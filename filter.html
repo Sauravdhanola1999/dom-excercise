@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+    <button onclick="resetSearch()">Reset</button>
+
+    <ul id="productList">
+        <li class="product">Laptop</li>
+        <li class="product">Smartphone</li>
+        <li class="product">Tablet</li>
+        <li class="product">Headphones</li>
+        <li class="product">Smartwatch</li>
+    </ul>
+
+    <p id="noResults" style="display: none;">No results found</p>
+    <script>
+        function filterProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let products = document.querySelectorAll(".product");
+            let found = false;
+            products.forEach((product) => {
+                if (product.textContent.toLowerCase().includes(input)) {
+                    product.style.display = 'list';
+                    found = true;
+                } else {
+                    product.style.display = "none";
+                }
+            })
+            document.getElementById("noResults").style.display = found ? "none" : "block";
+        }
+
+        function resetSearch(){
+            document.getElementById('searchInput').value= "";
+            filterProducts();
+        }
+    </script>
+</body>
+
+</html>

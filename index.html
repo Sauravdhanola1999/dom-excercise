@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+    <input type="text" id="textInput" placeholder="enter the text">
+    <button onclick="addText()" id="add-btn">Add the Text</button>
+    <button onclick="deleteItm()" id="remove-btn">Remove the Text</button>
+    <script>
+
+        function addText() {
+            let input = document.getElementById('textInput').value.trim();
+            let container = document.getElementById('container');
+
+            if (input === "") {
+                alert("Enter Something");
+                return;
+            }
+
+            let childDiv = document.createElement('div');
+            childDiv.className = 'child-Div';
+
+            let pText = document.createElement('p');
+            pText.innerText = input;
+
+            let deleteBtn = document.createElement('button');
+            deleteBtn.innerText = "X";
+            deleteBtn.onclick = function () {
+                childDiv.remove();
+            }
+
+            childDiv.appendChild(pText);
+            childDiv.appendChild(deleteBtn);
+            container.appendChild(childDiv);
+
+            document.getElementById('textInput').value = ""
+
+        }
+
+
+        function deleteItm() {
+            document.getElementById('container').innerHTML = ""
+        }
+    </script>
+</body>
+
+</html>
