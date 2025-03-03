@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toggle Content</title>
     <style>
-        #content {
-            display: none;
-            transition: all 0.3s ease;
-        }
+       
     </style>
 </head>
 <body>
@@ -17,17 +14,21 @@
     <p id="content">This is the hidden content.</p>
 
     <script>
-        function toggleContent() {
-            let content = document.getElementById("content");
-            let button = document.querySelector("button");
+        
+        function toggleContent(){
+            let button = document.querySelector('button');
+            let content = document.getElementById('content'); 
 
-            if (content.style.display === "none" || content.style.display === "") {
-                content.style.display = "block";
-                button.textContent = "Hide Content";
-            } else {
-                content.style.display = "none";
-                button.textContent = "Show Content";
+            if(content.style.display === "" || content.style.display === "none"){
+                content.style.display = 'block';
+                button.textContent = 'Hide Content';
             }
+             else {
+                content.style.display = 'none';
+                button.textContent = "Show Content";
+             }
+
+
         }
     </script>
 

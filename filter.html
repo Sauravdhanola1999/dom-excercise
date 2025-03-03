@@ -18,26 +18,26 @@
         <li class="product">Headphones</li>
         <li class="product">Smartwatch</li>
     </ul>
-
     <p id="noResults" style="display: none;">No results found</p>
     <script>
         function filterProducts() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let products = document.querySelectorAll(".product");
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let products = document.querySelectorAll('.product');
             let found = false;
+
             products.forEach((product) => {
                 if (product.textContent.toLowerCase().includes(input)) {
-                    product.style.display = 'list';
+                    product.style.display = 'block';
                     found = true;
                 } else {
-                    product.style.display = "none";
+                    product.style.display = 'none';
                 }
             })
-            document.getElementById("noResults").style.display = found ? "none" : "block";
+            document.getElementById('noResults').style.display = found ? "none" : "block";
         }
 
-        function resetSearch(){
-            document.getElementById('searchInput').value= "";
+        function resetSearch() {
+            document.getElementById('searchInput').value = "";
             filterProducts();
         }
     </script>
