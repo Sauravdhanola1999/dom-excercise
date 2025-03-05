@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filter</title>
+</head>
+
+<body>
+    <h2>Product List</h2>
+
+    <label for="min-price">Min Price:</label>
+    <input type="number" id="min-price" placeholder="Enter min price">
+
+    <label for="max-price">Max Price:</label>
+    <input type="number" id="max-price" placeholder="Enter max price">
+
+    <button onclick="filterProducts()">Filter</button>
+
+    <table id="product-table" border="1">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody id="product-list">
+            <!-- Products will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <p id="no-products-message" style="display: none; color: red;">No products found</p>
+
+    <script>
+        // Sample product data
+        const products = [
+            { name: 'Product 1', price: 20, description: 'Description 1' },
+            { name: 'Product 2', price: 50, description: 'Description 2' },
+            { name: 'Product 3', price: 30, description: 'Description 3' }
+        ];
+
+        function populateData(filteredProducts = products) {
+            let tbody = document.getElementById('product-list');
+            let message = document.getElementById('no-products-message');
+            tbody.innerHTML = "";
+
+            if (filteredProducts.length === 0) {
+                message.style.display = 'block';
+            } else {
+                message.style.display = 'none';
+                filteredProducts.forEach((product) => {
+                    let row = `<tr>
+                        <td>${product.name}</td>
+                         <td>${product.price}</td>
+                          <td>${product.description}</td>
+                        </tr>`;
+                    tbody.innerHTML +=row;
+                })
+            }
+        }
+
+        function filterProducts() {
+            let minPrice = parseInt(document.getElementById('min-price').value);
+            let maxPrice = parseInt(document.getElementById('max-price').value);
+
+            let filteredProducts = products.filter((product) => product.price >= minPrice && product.price <= maxPrice);
+            populateData(filteredProducts)
+
+        }
+
+        populateData();
+    </script>
+</body>
+
+</html>
